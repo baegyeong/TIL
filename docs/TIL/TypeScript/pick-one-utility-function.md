@@ -1,7 +1,6 @@
 ---
 slug: pick-one-utility-function
 title: PickOne 유틸리티 함수
-tags: [infer]
 ---
 
 > 우아한 타입스크립트 with 리액트 5장 내용 中
@@ -12,18 +11,18 @@ tags: [infer]
 
 ```ts
 type Card = {
-	card: string
+  card: string;
 };
 
 type Account = {
-	account: string
+  account: string;
 };
 
 function withdraw(type: Card | Account) {
-	...
+  // ...
 }
 
-withdraw({ card: "hyundai", account: "hana" })
+withdraw({ card: "hyundai", account: "hana" });
 ```
 
 위 상황과 같이 withdraw 함수의 매개변수로 Card 타입 혹은 Account를 받아야하는데, 둘 다 받아도 타입 에러가 발생하지 않는다.
@@ -48,19 +47,19 @@ type PickOne<T> = {
 }[keyof T];
 ```
 
-PickOne<T>를 One<T>, ExcludeOne<T>으로 나눠 뜯어보자.
+`PickOne<T>`를 `One<T>`, `ExcludeOne<T>`으로 나눠 뜯어보자.
 
-### One<T>
+### `One<T>`
 
 ```ts
 type One<T> = { [P in keyof T]: Record<P, T[P]> }[keyof T];
 ```
 
 1. [P in keyof T]는 T 객체 중 key값을 P로 뽑는다.
-2. Record<P, T[P]>는 P를 키로 갖고, value는 P를 키로 둔 T 객체의 값의 레코드 타입이다.
+2. `Record<P, T[P]>`는 P를 키로 갖고, value는 P를 키로 둔 T 객체의 값의 레코드 타입이다.
 3. 이 객체에서 다시 [keyof T]로 접근하므로 이는 원본객체 T와 동일하다.
 
-### ExcludeOne<T>
+### `ExcludeOne<T>`
 
 ```ts
 type ExcludeOne<T> = {
@@ -68,14 +67,14 @@ type ExcludeOne<T> = {
 }[keyof T];
 ```
 
-1. Exclude<keyof T, P>는 T 객체가 가진 키 값에서 P 타입과 일치하는 키 값을 제외한다. 이 타입을 A라 하자.
-2. Record<A, undefined>는 키로 A 타입을, 값으로 undefined 타입을 갖는 레코드 타입이다. 이 타입을 B라 하자.
-3. Partial<B>는 B 타입을 옵셔널로 만든다. { [key]?: undefined } 형태가 된다.
+1. `Exclude<keyof T, P>`는 T 객체가 가진 키 값에서 P 타입과 일치하는 키 값을 제외한다. 이 타입을 A라 하자.
+2. `Record<A, undefined>`는 키로 A 타입을, 값으로 undefined 타입을 갖는 레코드 타입이다. 이 타입을 B라 하자.
+3. `Partial<B>`는 B 타입을 옵셔널로 만든다. `{ [key]?: undefined }` 형태가 된다.
 4. 최종적으로 [keyof T]로 접근하기 때문에 3번의 타입이 반환된다.
 
 <br/>
 
-결국 PickOne<T> 타입은 다음과 같이 표현할 수 있다.
+결국 `PickOne<T>` 타입은 다음과 같이 표현할 수 있다.
 
 ```ts
 type PickOne<T> = One<T> & ExcludeOne<T>;

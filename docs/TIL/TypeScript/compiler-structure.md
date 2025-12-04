@@ -1,6 +1,6 @@
 ---
 slug: compiler-structure
-title: 타입스크릷트 컴파일러의 구조
+title: 타입스크립트 컴파일러의 구조
 tags: [compiler]
 ---
 

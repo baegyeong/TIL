@@ -110,3 +110,15 @@ export default function ClientCounter() {
    - placeholder에 클라이언트 컴포넌트를 채움
    - 인터렉션 가능한 부분만 hydrate
 6. 화면 렌더링 완료
+
+<br/>
+
+**레퍼런스**
+
+[React Server Components(RSC) 차근차근 이해하기](https://www.blan19.com/tech/rsc-deep-dive)
+
+[Next.js의 SSR과 React의 RSC(React Server Components) 완벽 이해](https://mycodings.fly.dev/blog/2024-01-28-complete-understanding-nextjs-ssr-and-react-rsc/)
+
+[[Next.js] 리액트 서버 컴포넌트(RSC)는 어떻게 렌더링되는가](https://www.0biglife.com/posts/server-component)
+
+[서버 컴포넌트](https://ko.react.dev/reference/rsc/server-components)

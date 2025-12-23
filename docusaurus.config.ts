@@ -72,6 +72,11 @@ const config: Config = {
           position: "left",
           label: "TIL",
         },
+        {
+          to: "/knowledge-graph",
+          label: "🧠 지식 그래프",
+          position: "left",
+        },
         // { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/baegyeong/TIL",

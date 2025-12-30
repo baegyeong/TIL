@@ -2,7 +2,8 @@ import { GoogleGenAI } from "@google/genai";
 import fs from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,45 +15,59 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
  ========================= */
 async function getAllTILs() {
   const docsPath = path.join(__dirname, "..", "docs");
-  const tils = [];
-
   const categories = await fs.readdir(docsPath);
-  for (const category of categories) {
-    const categoryPath = path.join(docsPath, category);
-    const stat = await fs.stat(categoryPath);
 
-    if (!stat.isDirectory() || category.startsWith(".")) continue;
+  const tilPromises = categories.map(async (category) => {
+    try {
+      const categoryPath = path.join(docsPath, category);
+      const stat = await fs.stat(categoryPath);
 
-    const files = await fs.readdir(categoryPath);
-    for (const file of files) {
-      if (!file.endsWith(".md") && !file.endsWith(".mdx")) continue;
+      if (!stat.isDirectory() || category.startsWith(".")) {
+        return [];
+      }
 
-      const filePath = path.join(categoryPath, file);
-      const content = await fs.readFile(filePath, "utf-8");
+      const files = await fs.readdir(categoryPath);
+      const filePromises = files
+        .filter((file) => file.endsWith(".md") || file.endsWith(".mdx"))
+        .map(async (file) => {
+          try {
+            const filePath = path.join(categoryPath, file);
+            const content = await fs.readFile(filePath, "utf-8");
 
-      const titleMatch = content.match(/title:\s*(.+)/);
-      const slugMatch = content.match(/slug:\s*(.+)/);
+            const titleMatch = content.match(/title:\s*(.+)/);
+            const slugMatch = content.match(/slug:\s*(.+)/);
 
-      const title = titleMatch ? titleMatch[1].trim() : file;
-      const slug = slugMatch
-        ? slugMatch[1].trim()
-        : file.replace(/\.mdx?$/, "");
+            const title = titleMatch ? titleMatch[1].trim() : file;
+            const slug = slugMatch
+              ? slugMatch[1].trim()
+              : file.replace(/\.mdx?$/, "");
 
-      const summary = content
-        .replace(/---[\s\S]*?---/, "")
-        .slice(0, 300)
-        .trim();
+            const summary = content
+              .replace(/---[\s\S]*?---/, "")
+              .slice(0, 300)
+              .trim();
 
-      tils.push({
-        id: `${category}/${slug}`,
-        category,
-        title,
-        summary,
-      });
+            return {
+              id: `${category}/${slug}`,
+              category,
+              title,
+              summary,
+            };
+          } catch (error) {
+            console.error(`Error processing file ${category}/${file}:`, error);
+            return null;
+          }
+        });
+
+      return Promise.all(filePromises);
+    } catch (error) {
+      console.error(`Error processing category ${category}:`, error);
+      return [];
     }
-  }
+  });
 
-  return tils;
+  const nestedTils = await Promise.all(tilPromises);
+  return nestedTils.flat().filter(Boolean);
 }
 
 /* =========================
@@ -115,19 +130,27 @@ JSON 형식으로만 응답하세요:
 }
 `;
 
-  const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+  const model = ai.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+
+  const result = await model.generateContent({
     contents: [{ role: "user", parts: [{ text: prompt }] }],
-    config: { responseMimeType: "application/json" },
+    generationConfig: {
+      responseMimeType: "application/json",
+    },
   });
 
-  const rawText = response.candidates?.[0]?.content?.parts
-    ?.map((p) => p.text)
-    .join("");
+  const response = result.response;
+  const rawText = response.text();
 
   if (!rawText) throw new Error("Gemini 응답이 비어 있음");
 
-  return JSON.parse(rawText);
+  try {
+    return JSON.parse(rawText);
+  } catch (error) {
+    console.error("Gemini 응답 JSON 파싱 실패:", error);
+    console.error("받은 응답:", rawText);
+    throw new Error("잘못된 JSON 형식의 Gemini 응답");
+  }
 }
 
 function filterInvalidNodes(graph, validIds) {
@@ -149,29 +172,40 @@ function sanitizeGraph(graph, validIds) {
  * 3. 저장 
  ========================= */
 async function main() {
-  console.log("📚 TIL 읽는 중...");
-  const tils = await getAllTILs();
-  if (!tils.length) return;
+  try {
+    console.log("📚 TIL 읽는 중...");
+    const tils = await getAllTILs();
+    if (!tils.length) {
+      console.log("분석할 TIL 문서가 없습니다.");
+      return;
+    }
 
-  console.log("🤖 Gemini 분석 중...");
-  const rawGraph = await analyzeRelationships(tils);
+    console.log(`📄 ${tils.length}개의 TIL 문서를 찾았습니다.`);
+    console.log("🤖 Gemini 분석 중...");
+    const rawGraph = await analyzeRelationships(tils);
 
-  console.log("🧹 그래프 정제 중...");
-  const validIds = new Set(tils.map((t) => t.id));
-  const graph = sanitizeGraph(rawGraph, validIds);
+    console.log("🧹 그래프 정제 중...");
+    const validIds = new Set(tils.map((t) => t.id));
+    const graph = sanitizeGraph(rawGraph, validIds);
 
-  const outputPath = path.join(
-    __dirname,
-    "..",
-    "static",
-    "data",
-    "knowledge-graph.json"
-  );
+    const outputPath = path.join(
+      __dirname,
+      "..",
+      "static",
+      "data",
+      "knowledge-graph.json"
+    );
 
-  await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await fs.writeFile(outputPath, JSON.stringify(graph, null, 2));
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+    await fs.writeFile(outputPath, JSON.stringify(graph, null, 2));
 
-  console.log("✅ 도메인 지식 그래프 생성 완료!");
+    console.log(
+      `✅ 도메인 지식 그래프 생성 완료! (${graph.nodes.length} nodes, ${graph.links.length} links)`
+    );
+  } catch (error) {
+    console.error("❌ 지식 그래프 생성 중 오류 발생:", error);
+    process.exit(1);
+  }
 }
 
 main();

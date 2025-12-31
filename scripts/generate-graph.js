@@ -129,28 +129,20 @@ JSON 형식으로만 응답하세요:
   ]
 }
 `;
+  const response = await ai.models.generateContent({
+    model: "gemini-2.5-flash",
 
-  const model = ai.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
-
-  const result = await model.generateContent({
     contents: [{ role: "user", parts: [{ text: prompt }] }],
-    generationConfig: {
-      responseMimeType: "application/json",
-    },
+    config: { responseMimeType: "application/json" },
   });
 
-  const response = result.response;
-  const rawText = response.text();
+  const rawText = response.candidates?.[0]?.content?.parts
+    ?.map((p) => p.text)
+    .join("");
 
   if (!rawText) throw new Error("Gemini 응답이 비어 있음");
 
-  try {
-    return JSON.parse(rawText);
-  } catch (error) {
-    console.error("Gemini 응답 JSON 파싱 실패:", error);
-    console.error("받은 응답:", rawText);
-    throw new Error("잘못된 JSON 형식의 Gemini 응답");
-  }
+  return JSON.parse(rawText);
 }
 
 function filterInvalidNodes(graph, validIds) {

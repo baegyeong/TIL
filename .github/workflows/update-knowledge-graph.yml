@@ -8,8 +8,7 @@ on:
       - "docs/**"
       - "scripts/generate-graph.js"
   pull_request:
-    branches:
-      - main
+    branches: [main]
     paths:
       - "docs/**"
       - "scripts/generate-graph.js"

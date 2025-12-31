@@ -3,20 +3,10 @@ name: Recommend Next TIL Topics
 on:
   schedule:
     - cron: "0 0 * * 1"
-  push:
-    branches: [main]
-    paths:
-      - "docs/**"
-      - ".github/workflows/recommend-til.yml"
-  pull_request:
-    paths:
-      - "docs/**"
-      - ".github/workflows/recommend-til.yml"
 
 permissions:
   contents: write
   issues: write
-  pull-requests: write
 
 jobs:
   recommend:
@@ -39,8 +29,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: node scripts/generate-recommendations.js
 
-      - name: Commit and Push on Main/Schedule
-        if: github.event_name != 'pull_request'
+      - name: Commit and Push Recommendations
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -52,8 +41,7 @@ jobs:
             git push
           fi
 
-      - name: Create Issue on Main/Schedule
-        if: github.event_name != 'pull_request'
+      - name: Create Issue with Recommendations
         uses: actions/github-script@v7
         with:
           script: |
@@ -73,29 +61,4 @@ jobs:
                 title: `📌 TIL topic recommendations (${today})`,
                 body,
                 labels: ["automation", "til-recommendation"],
-            });
-
-      - name: Post Comment on Pull Request
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const fs = require("fs");
-            const today = new Date().toISOString().slice(0, 10);
-            const filePath = `meta/recommendations/${today}.md`;
-
-            if (!fs.existsSync(filePath)) {
-              core.info(`No new recommendation file generated, skipping comment.`);
-              return;
-            }
-
-            const body = fs.readFileSync(filePath, "utf8");
-            const commentBody = `### 🤖 다음 TIL 주제로 어떠세요?\n\n${body}`;
-
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body: commentBody,
             });

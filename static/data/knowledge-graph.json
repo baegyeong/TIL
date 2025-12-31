@@ -19,6 +19,12 @@
       "importance": 1
     },
     {
+      "id": "JavaScript/this-binding",
+      "title": "this 바인딩",
+      "category": "JavaScript",
+      "importance": 1
+    },
+    {
       "id": "Network/load-balancing",
       "title": "로드밸런싱",
       "category": "Network",
@@ -51,6 +57,12 @@
     {
       "id": "React/how-react-memo-compares-props",
       "title": "React.memo를 써도 객체/배열 props 때문에 리렌더링이 발생하는 이유",
+      "category": "React",
+      "importance": 1
+    },
+    {
+      "id": "React/manipulate-dom-with-ref",
+      "title": "Ref로 DOM 조작하기",
       "category": "React",
       "importance": 1
     },
@@ -99,18 +111,6 @@
   ],
   "links": [
     {
-      "source": "Data Structure/linked-list",
-      "target": "Data Structure/priority-queue",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Data Structure/priority-queue",
-      "target": "Data Structure/linked-list",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
       "source": "JavaScript/managing-memory-in-javascript",
       "target": "Operating System/memory-structure",
       "strength": 1,
@@ -120,7 +120,13 @@
       "source": "Node.js/run-javascript-in-nodejs",
       "target": "JavaScript/managing-memory-in-javascript",
       "strength": 1,
-      "type": "USES"
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Node.js/run-javascript-in-nodejs",
+      "target": "JavaScript/this-binding",
+      "strength": 1,
+      "type": "RELATED_TO"
     },
     {
       "source": "Next/react-server-component",
@@ -130,7 +136,19 @@
     },
     {
       "source": "Next/react-server-component",
-      "target": "React/how-react-memo-compares-props",
+      "target": "React/manipulate-dom-with-ref",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "Web/fouc",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "Web/virtual-scrolling",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -141,62 +159,44 @@
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/fouc",
-      "target": "React/how-react-memo-compares-props",
+      "source": "React/component-return-type",
+      "target": "React/manipulate-dom-with-ref",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/fouc",
-      "target": "Web/virtual-scrolling",
+      "source": "React/how-react-memo-compares-props",
+      "target": "React/manipulate-dom-with-ref",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/virtual-scrolling",
+      "source": "React/manipulate-dom-with-ref",
       "target": "Web/fouc",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/virtual-scrolling",
-      "target": "React/how-react-memo-compares-props",
+      "source": "React/manipulate-dom-with-ref",
+      "target": "Web/virtual-scrolling",
       "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Web/rest-api-graphql",
-      "target": "Network/load-balancing",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/covariance-contravariance",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/pick-one-utility-function",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/use-the-refer-to-infer-the-type",
-      "strength": 1,
-      "type": "PREREQUISITE"
+      "type": "USES"
     },
     {
       "source": "TypeScript/covariance-contravariance",
-      "target": "TypeScript/pick-one-utility-function",
+      "target": "TypeScript/compiler-structure",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "TypeScript/covariance-contravariance",
-      "target": "TypeScript/use-the-refer-to-infer-the-type",
+      "source": "TypeScript/pick-one-utility-function",
+      "target": "TypeScript/compiler-structure",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "TypeScript/use-the-refer-to-infer-the-type",
+      "target": "TypeScript/compiler-structure",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -207,8 +207,20 @@
       "type": "RELATED_TO"
     },
     {
-      "source": "TypeScript/use-the-refer-to-infer-the-type",
+      "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/pick-one-utility-function",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "TypeScript/covariance-contravariance",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/rest-api-graphql",
+      "target": "Network/load-balancing",
       "strength": 1,
       "type": "RELATED_TO"
     }

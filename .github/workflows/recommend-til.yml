@@ -7,9 +7,11 @@ on:
     branches: [main]
     paths:
       - "docs/**"
+      - ".github/workflows/recommend-til.yml"
   pull_request:
     paths:
       - "docs/**"
+      - ".github/workflows/recommend-til.yml"
 
 permissions:
   contents: write

@@ -3,7 +3,13 @@ name: Update Knowledge Graph
 on:
   push:
     branches:
-      - fix/action-script
+      - main
+    paths:
+      - "docs/**"
+      - "scripts/generate-graph.js"
+  pull_request:
+    branches:
+      - main
     paths:
       - "docs/**"
       - "scripts/generate-graph.js"

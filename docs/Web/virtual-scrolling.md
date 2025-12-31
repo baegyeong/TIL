@@ -23,55 +23,40 @@ title: Virtual Scrolling
 ## 라이브러리
 
 npm trends에서 최근 1년간의 다운로드 수를 살펴봤을 때 `@tanstack/react-virtual`이 가장 높은 다운로드 수를 기록했다.
-그 다음으로는 react-window > react-virtualized > react-infinite-scroll-component > @tanstack/react-virtual 순이였다.
+그 다음으로는 @tanstack/react-virtual > react-window > react-virtualized > react-infinite-scroll-component 순이었다.
 
 - @tanstack/react-virtual
 
   - 대량의 요소 목록을 가상화하는 headless UI utility
   - headless UI이므로 스타일이나 마크업의 제어권은 사용자에게 있음
 
-  ```tsx
-  import { useVirtualizer } from "@tanstack/react-virtual";
+    {% raw %}
 
-  function App() {
-    // The scrollable element for your list
-    const parentRef = React.useRef(null);
+    ```tsx
+    import { useVirtualizer } from "@tanstack/react-virtual";
 
-    // The virtualizer
-    const rowVirtualizer = useVirtualizer({
-      count: 10000,
-      getScrollElement: () => parentRef.current,
-      estimateSize: () => 35,
-    });
+    function App() {
+      const parentRef = React.useRef(null);
 
-    return (
-      <>
-        {/* The scrollable element for your list */}
-        <div
-          ref={parentRef}
-          style={{
-            height: `400px`,
-            overflow: "auto", // Make it scroll!
-          }}
-        >
-          {/* The large inner element to hold all of the items */}
+      const rowVirtualizer = useVirtualizer({
+        count: 10000,
+        getScrollElement: () => parentRef.current,
+        estimateSize: () => 35,
+      });
+
+      return (
+        <div ref={parentRef} style={{ height: "400px", overflow: "auto" }}>
           <div
             style={{
               height: `${rowVirtualizer.getTotalSize()}px`,
-              width: "100%",
               position: "relative",
             }}
           >
-            {/* Only the visible items in the virtualizer, manually positioned to be in view */}
             {rowVirtualizer.getVirtualItems().map((virtualItem) => (
               <div
                 key={virtualItem.key}
                 style={{
                   position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: `${virtualItem.size}px`,
                   transform: `translateY(${virtualItem.start}px)`,
                 }}
               >
@@ -80,7 +65,8 @@ npm trends에서 최근 1년간의 다운로드 수를 살펴봤을 때 `@tansta
             ))}
           </div>
         </div>
-      </>
-    );
-  }
-  ```
+      );
+    }
+    ```
+
+    {% endraw %}

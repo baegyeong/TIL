@@ -6,11 +6,6 @@ on:
     paths:
       - "docs/**"
       - "scripts/generate-graph.js"
-  pull_request:
-    branches: [main]
-    paths:
-      - "docs/**"
-      - "scripts/generate-graph.js"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -48,10 +43,7 @@ jobs:
           fi
 
       - name: Commit updated graph
-        if: |
-          github.event_name == 'push' &&
-          github.ref == 'refs/heads/main' &&
-          steps.git-check.outputs.changed == 'true'
+        if: steps.git-check.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -59,8 +51,5 @@ jobs:
           git commit -m "chore: update knowledge graph"
 
       - name: Push changes
-        if: |
-          github.event_name == 'push' &&
-          github.ref == 'refs/heads/main' &&
-          steps.git-check.outputs.changed == 'true'
+        if: steps.git-check.outputs.changed == 'true'
         run: git push

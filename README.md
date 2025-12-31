@@ -51,7 +51,7 @@ TIL 간의 관계를 **지식 그래프 형태로 자동 생성**
 
 #### 자동화 결과물
 
-- 날짜별 추천 문서 생성 (`meta/recommendations/YYYY-MM-DD.md`)
+- 날짜별 추천 문서 생성 ([`meta/recommendations/YYYY-MM-DD.md`](./meta/recommendations))
 - GitHub Issue 자동 생성
 - 주 1회 실행 (GitHub Action)
 

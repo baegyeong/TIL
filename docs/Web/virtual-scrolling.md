@@ -26,47 +26,42 @@ npm trends에서 최근 1년간의 다운로드 수를 살펴봤을 때 `@tansta
 그 다음으로는 @tanstack/react-virtual > react-window > react-virtualized > react-infinite-scroll-component 순이었다.
 
 - @tanstack/react-virtual
-
   - 대량의 요소 목록을 가상화하는 headless UI utility
   - headless UI이므로 스타일이나 마크업의 제어권은 사용자에게 있음
 
-    {% raw %}
+```tsx
+import { useVirtualizer } from "@tanstack/react-virtual";
 
-    ```tsx
-    import { useVirtualizer } from "@tanstack/react-virtual";
+function App() {
+  const parentRef = React.useRef(null);
 
-    function App() {
-      const parentRef = React.useRef(null);
+  const rowVirtualizer = useVirtualizer({
+    count: 10000,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 35,
+  });
 
-      const rowVirtualizer = useVirtualizer({
-        count: 10000,
-        getScrollElement: () => parentRef.current,
-        estimateSize: () => 35,
-      });
-
-      return (
-        <div ref={parentRef} style={{ height: "400px", overflow: "auto" }}>
+  return (
+    <div ref={parentRef} style={{ height: "400px", overflow: "auto" }}>
+      <div
+        style={{
+          height: `${rowVirtualizer.getTotalSize()}px`,
+          position: "relative",
+        }}
+      >
+        {rowVirtualizer.getVirtualItems().map((virtualItem) => (
           <div
+            key={virtualItem.key}
             style={{
-              height: `${rowVirtualizer.getTotalSize()}px`,
-              position: "relative",
+              position: "absolute",
+              transform: `translateY(${virtualItem.start}px)`,
             }}
           >
-            {rowVirtualizer.getVirtualItems().map((virtualItem) => (
-              <div
-                key={virtualItem.key}
-                style={{
-                  position: "absolute",
-                  transform: `translateY(${virtualItem.start}px)`,
-                }}
-              >
-                Row {virtualItem.index}
-              </div>
-            ))}
+            Row {virtualItem.index}
           </div>
-        </div>
-      );
-    }
-    ```
-
-    {% endraw %}
+        ))}
+      </div>
+    </div>
+  );
+}
+```

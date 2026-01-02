@@ -23,7 +23,7 @@ title: ssh(Secure Shell)
 - 공개키와 개인키로 이루어지는 비대칭키 암호화 방식 이용
 - SSH Client가 최초에 요청한 SSH Connection Request를 공격자가 가로채어 SSH Server인 척 하지 못하게 하기 위해 세션이 맺어지기 전부터 인증 과정을 거침
 
-![](/static/img/session-authentication.png)
+![](/img/session-authentication.png)
 
 2. User Authentication
 
@@ -42,7 +42,7 @@ title: ssh(Secure Shell)
     - 클라이언트가 개인키로 챌린지를 복호화하여 응답
     - 서버가 응답을 검증하여 인증 완료
 
-![](/static/img/key-pair-ssh.png)
+![](/img/key-pair-ssh.png)
 
 <br/>
 

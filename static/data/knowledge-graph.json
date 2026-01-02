@@ -4,25 +4,25 @@
       "id": "Data Structure/linked-list",
       "title": "연결리스트",
       "category": "Data Structure",
-      "importance": 1
+      "importance": 2
     },
     {
       "id": "Data Structure/priority-queue",
       "title": "우선순위 큐",
       "category": "Data Structure",
-      "importance": 1
+      "importance": 2
     },
     {
       "id": "JavaScript/managing-memory-in-javascript",
       "title": "JavaScript의 메모리 관리",
       "category": "JavaScript",
-      "importance": 1
+      "importance": 2
     },
     {
       "id": "JavaScript/this-binding",
       "title": "this 바인딩",
       "category": "JavaScript",
-      "importance": 1
+      "importance": 2
     },
     {
       "id": "Network/load-balancing",
@@ -52,7 +52,7 @@
       "id": "Operating System/memory-structure",
       "title": "메모리 구조",
       "category": "Operating System",
-      "importance": 1
+      "importance": 2
     },
     {
       "id": "React/component-return-type",
@@ -76,13 +76,13 @@
       "id": "TypeScript/compiler-structure",
       "title": "타입스크립트 컴파일러의 구조",
       "category": "TypeScript",
-      "importance": 1
+      "importance": 2
     },
     {
       "id": "TypeScript/covariance-contravariance",
       "title": "타입스크립트의 공변성과 반공변성",
       "category": "TypeScript",
-      "importance": 1
+      "importance": 2
     },
     {
       "id": "TypeScript/pick-one-utility-function",
@@ -117,32 +117,56 @@
   ],
   "links": [
     {
+      "source": "Data Structure/linked-list",
+      "target": "Data Structure/priority-queue",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
       "source": "Operating System/memory-structure",
       "target": "JavaScript/managing-memory-in-javascript",
       "strength": 1,
       "type": "PREREQUISITE"
     },
     {
+      "source": "Node.js/run-javascript-in-nodejs",
+      "target": "JavaScript/managing-memory-in-javascript",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Node.js/run-javascript-in-nodejs",
+      "target": "JavaScript/this-binding",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
       "source": "Next/react-server-component",
       "target": "React/component-return-type",
       "strength": 1,
-      "type": "DEPENDS_ON"
+      "type": "EXTENDS"
     },
     {
       "source": "Next/react-server-component",
-      "target": "Web/fouc",
+      "target": "React/how-react-memo-compares-props",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "React/how-react-memo-compares-props",
+      "source": "Next/react-server-component",
+      "target": "React/manipulate-dom-with-ref",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/fouc",
+      "target": "React/manipulate-dom-with-ref",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Web/fouc",
       "target": "Web/virtual-scrolling",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/manipulate-dom-with-ref",
-      "target": "Web/fouc",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -153,19 +177,13 @@
       "type": "USES"
     },
     {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/covariance-contravariance",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
+      "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/pick-one-utility-function",
       "strength": 1,
       "type": "PREREQUISITE"
     },
     {
-      "source": "TypeScript/compiler-structure",
+      "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
       "type": "PREREQUISITE"
@@ -174,17 +192,11 @@
       "source": "TypeScript/pick-one-utility-function",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
-      "type": "SIMILAR_TO"
+      "type": "USES"
     },
     {
-      "source": "TypeScript/pick-one-utility-function",
-      "target": "React/component-return-type",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/use-the-refer-to-infer-the-type",
-      "target": "React/component-return-type",
+      "source": "TypeScript/compiler-structure",
+      "target": "TypeScript/covariance-contravariance",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -196,6 +208,12 @@
     },
     {
       "source": "Web/rest-api-graphql",
+      "target": "Network/ssh",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Network/load-balancing",
       "target": "Network/ssh",
       "strength": 1,
       "type": "RELATED_TO"

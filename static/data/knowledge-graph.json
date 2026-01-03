@@ -4,25 +4,25 @@
       "id": "Data Structure/linked-list",
       "title": "연결리스트",
       "category": "Data Structure",
-      "importance": 2
+      "importance": 1
     },
     {
       "id": "Data Structure/priority-queue",
       "title": "우선순위 큐",
       "category": "Data Structure",
-      "importance": 2
+      "importance": 1
     },
     {
       "id": "JavaScript/managing-memory-in-javascript",
       "title": "JavaScript의 메모리 관리",
       "category": "JavaScript",
-      "importance": 2
+      "importance": 1
     },
     {
       "id": "JavaScript/this-binding",
       "title": "this 바인딩",
       "category": "JavaScript",
-      "importance": 2
+      "importance": 1
     },
     {
       "id": "Network/load-balancing",
@@ -52,7 +52,7 @@
       "id": "Operating System/memory-structure",
       "title": "메모리 구조",
       "category": "Operating System",
-      "importance": 2
+      "importance": 1
     },
     {
       "id": "React/component-return-type",
@@ -76,13 +76,13 @@
       "id": "TypeScript/compiler-structure",
       "title": "타입스크립트 컴파일러의 구조",
       "category": "TypeScript",
-      "importance": 2
+      "importance": 1
     },
     {
       "id": "TypeScript/covariance-contravariance",
       "title": "타입스크립트의 공변성과 반공변성",
       "category": "TypeScript",
-      "importance": 2
+      "importance": 1
     },
     {
       "id": "TypeScript/pick-one-utility-function",
@@ -99,6 +99,12 @@
     {
       "id": "Web/fouc",
       "title": "FOUC(Flash of Unstyled Content)",
+      "category": "Web",
+      "importance": 1
+    },
+    {
+      "id": "Web/browser-rendering-process",
+      "title": "브라우저 렌더링 과정",
       "category": "Web",
       "importance": 1
     },
@@ -123,8 +129,14 @@
       "type": "RELATED_TO"
     },
     {
-      "source": "Operating System/memory-structure",
-      "target": "JavaScript/managing-memory-in-javascript",
+      "source": "Data Structure/priority-queue",
+      "target": "Data Structure/linked-list",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "JavaScript/managing-memory-in-javascript",
+      "target": "Operating System/memory-structure",
       "strength": 1,
       "type": "PREREQUISITE"
     },
@@ -141,16 +153,40 @@
       "type": "USES"
     },
     {
+      "source": "Node.js/run-javascript-in-nodejs",
+      "target": "Operating System/memory-structure",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/load-balancing",
+      "target": "Network/ssh",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Network/load-balancing",
+      "target": "Web/rest-api-graphql",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/ssh",
+      "target": "Network/load-balancing",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
       "source": "Next/react-server-component",
       "target": "React/component-return-type",
       "strength": 1,
-      "type": "EXTENDS"
+      "type": "DEPENDS_ON"
     },
     {
       "source": "Next/react-server-component",
       "target": "React/how-react-memo-compares-props",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "SIMILAR_TO"
     },
     {
       "source": "Next/react-server-component",
@@ -159,20 +195,56 @@
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/fouc",
-      "target": "React/manipulate-dom-with-ref",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Web/fouc",
-      "target": "Web/virtual-scrolling",
+      "source": "Next/react-server-component",
+      "target": "Web/browser-rendering-process",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/virtual-scrolling",
+      "source": "Next/react-server-component",
+      "target": "Web/fouc",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/component-return-type",
+      "target": "React/how-react-memo-compares-props",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/component-return-type",
       "target": "React/manipulate-dom-with-ref",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/how-react-memo-compares-props",
+      "target": "React/manipulate-dom-with-ref",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/how-react-memo-compares-props",
+      "target": "Web/virtual-scrolling",
+      "strength": 1,
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "TypeScript/compiler-structure",
+      "target": "TypeScript/covariance-contravariance",
+      "strength": 1,
+      "type": "IMPLEMENTS"
+    },
+    {
+      "source": "TypeScript/compiler-structure",
+      "target": "TypeScript/pick-one-utility-function",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "TypeScript/compiler-structure",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
       "type": "USES"
     },
@@ -180,41 +252,29 @@
       "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/pick-one-utility-function",
       "strength": 1,
-      "type": "PREREQUISITE"
+      "type": "RELATED_TO"
     },
     {
       "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
-      "type": "PREREQUISITE"
+      "type": "RELATED_TO"
     },
     {
       "source": "TypeScript/pick-one-utility-function",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/covariance-contravariance",
-      "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/rest-api-graphql",
-      "target": "Network/load-balancing",
+      "source": "Web/fouc",
+      "target": "Web/browser-rendering-process",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "DEPENDS_ON"
     },
     {
-      "source": "Web/rest-api-graphql",
-      "target": "Network/ssh",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Network/load-balancing",
-      "target": "Network/ssh",
+      "source": "Web/browser-rendering-process",
+      "target": "Web/virtual-scrolling",
       "strength": 1,
       "type": "RELATED_TO"
     }

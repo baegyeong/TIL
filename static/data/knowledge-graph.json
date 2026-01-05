@@ -79,6 +79,12 @@
       "importance": 1
     },
     {
+      "id": "React/react-suspense",
+      "title": "React Suspense",
+      "category": "React",
+      "importance": 1
+    },
+    {
       "id": "TypeScript/compiler-structure",
       "title": "타입스크립트 컴파일러의 구조",
       "category": "TypeScript",
@@ -129,98 +135,74 @@
   ],
   "links": [
     {
-      "source": "Network/cdn",
-      "target": "Network/load-balancing",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Network/load-balancing",
-      "target": "Network/cdn",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Network/cdn",
-      "target": "Web/browser-rendering-process",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Web/browser-rendering-process",
-      "target": "Web/fouc",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
       "source": "Operating System/memory-structure",
       "target": "JavaScript/managing-memory-in-javascript",
       "strength": 1,
       "type": "PREREQUISITE"
     },
     {
+      "source": "Network/cdn",
+      "target": "Network/load-balancing",
+      "strength": 1,
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "Network/cdn",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "React/component-return-type",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "React/react-suspense",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
       "source": "Node.js/run-javascript-in-nodejs",
       "target": "JavaScript/managing-memory-in-javascript",
       "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Node.js/run-javascript-in-nodejs",
-      "target": "JavaScript/this-binding",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Next/react-server-component",
-      "target": "React/component-return-type",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Next/react-server-component",
-      "target": "React/how-react-memo-compares-props",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Next/react-server-component",
-      "target": "React/manipulate-dom-with-ref",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/how-react-memo-compares-props",
-      "target": "React/component-return-type",
-      "strength": 1,
       "type": "RELATED_TO"
     },
     {
       "source": "React/component-return-type",
       "target": "React/how-react-memo-compares-props",
       "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/manipulate-dom-with-ref",
-      "target": "React/component-return-type",
-      "strength": 1,
-      "type": "RELATED_TO"
+      "type": "PREREQUISITE"
     },
     {
       "source": "React/component-return-type",
       "target": "React/manipulate-dom-with-ref",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "React/component-return-type",
+      "target": "React/react-suspense",
+      "strength": 1,
+      "type": "PREREQUISITE"
     },
     {
       "source": "React/manipulate-dom-with-ref",
-      "target": "React/how-react-memo-compares-props",
+      "target": "Web/browser-rendering-process",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "React/how-react-memo-compares-props",
-      "target": "React/manipulate-dom-with-ref",
+      "source": "React/react-suspense",
+      "target": "Web/fouc",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -228,41 +210,29 @@
       "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/pick-one-utility-function",
       "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/pick-one-utility-function",
-      "target": "TypeScript/covariance-contravariance",
-      "strength": 1,
-      "type": "RELATED_TO"
+      "type": "PREREQUISITE"
     },
     {
       "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/use-the-refer-to-infer-the-type",
-      "target": "TypeScript/covariance-contravariance",
-      "strength": 1,
-      "type": "RELATED_TO"
+      "type": "PREREQUISITE"
     },
     {
       "source": "TypeScript/pick-one-utility-function",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/use-the-refer-to-infer-the-type",
-      "target": "TypeScript/pick-one-utility-function",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
       "source": "Web/fouc",
-      "target": "React/component-return-type",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Web/virtual-scrolling",
       "strength": 1,
       "type": "RELATED_TO"
     }

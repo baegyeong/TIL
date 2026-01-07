@@ -43,6 +43,12 @@
       "importance": 1
     },
     {
+      "id": "Network/tcp-udp",
+      "title": "TCP와 UDP",
+      "category": "Network",
+      "importance": 1
+    },
+    {
       "id": "Next/react-server-component",
       "title": "리액트 서버 컴포넌트",
       "category": "Next",
@@ -135,8 +141,8 @@
   ],
   "links": [
     {
-      "source": "Data Structure/linked-list",
-      "target": "Data Structure/priority-queue",
+      "source": "Data Structure/priority-queue",
+      "target": "Data Structure/linked-list",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -147,16 +153,34 @@
       "type": "RELATED_TO"
     },
     {
-      "source": "Node.js/run-javascript-in-nodejs",
+      "source": "JavaScript/managing-memory-in-javascript",
+      "target": "Node.js/run-javascript-in-nodejs",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "JavaScript/managing-memory-in-javascript",
+      "target": "React/how-react-memo-compares-props",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "JavaScript/this-binding",
       "target": "JavaScript/managing-memory-in-javascript",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Node.js/run-javascript-in-nodejs",
-      "target": "JavaScript/this-binding",
+      "source": "Network/cdn",
+      "target": "Network/load-balancing",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "Network/cdn",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "USES"
     },
     {
       "source": "Network/cdn",
@@ -165,10 +189,40 @@
       "type": "USES"
     },
     {
-      "source": "Network/cdn",
+      "source": "Network/load-balancing",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/ssh",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Network/ssh",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Network/cdn",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
       "target": "Network/load-balancing",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Web/rest-api-graphql",
+      "strength": 1,
+      "type": "PREREQUISITE"
     },
     {
       "source": "Next/react-server-component",
@@ -184,49 +238,79 @@
     },
     {
       "source": "Next/react-server-component",
+      "target": "Node.js/run-javascript-in-nodejs",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Next/react-server-component",
       "target": "Web/browser-rendering-process",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "React/how-react-memo-compares-props",
-      "target": "React/component-return-type",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "React/manipulate-dom-with-ref",
-      "target": "React/component-return-type",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "React/react-suspense",
-      "target": "React/component-return-type",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "TypeScript/covariance-contravariance",
+      "source": "Node.js/run-javascript-in-nodejs",
       "target": "TypeScript/compiler-structure",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "TypeScript/pick-one-utility-function",
-      "target": "TypeScript/covariance-contravariance",
+      "source": "Operating System/memory-structure",
+      "target": "JavaScript/managing-memory-in-javascript",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "React/how-react-memo-compares-props",
+      "target": "React/component-return-type",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "React/manipulate-dom-with-ref",
+      "target": "React/component-return-type",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "React/react-suspense",
+      "target": "React/component-return-type",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "React/manipulate-dom-with-ref",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "React/react-suspense",
+      "target": "Web/fouc",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "TypeScript/use-the-refer-to-infer-the-type",
+      "source": "TypeScript/compiler-structure",
       "target": "TypeScript/covariance-contravariance",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "PREREQUISITE"
     },
     {
-      "source": "TypeScript/use-the-refer-to-infer-the-type",
+      "source": "TypeScript/covariance-contravariance",
       "target": "TypeScript/pick-one-utility-function",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "TypeScript/covariance-contravariance",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "TypeScript/pick-one-utility-function",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -237,28 +321,22 @@
       "type": "DEPENDS_ON"
     },
     {
-      "source": "Web/rest-api-graphql",
-      "target": "Web/browser-rendering-process",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Web/rest-api-graphql",
-      "target": "Network/load-balancing",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
       "source": "Web/virtual-scrolling",
       "target": "Web/browser-rendering-process",
       "strength": 1,
-      "type": "IMPLEMENTS"
+      "type": "DEPENDS_ON"
     },
     {
-      "source": "Web/virtual-scrolling",
-      "target": "React/manipulate-dom-with-ref",
+      "source": "Web/browser-rendering-process",
+      "target": "Web/fouc",
       "strength": 1,
-      "type": "USES"
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Web/virtual-scrolling",
+      "strength": 1,
+      "type": "PREREQUISITE"
     }
   ]
 }

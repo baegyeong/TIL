@@ -31,6 +31,12 @@
       "importance": 1
     },
     {
+      "id": "Network/differences-and-features-by-http-version",
+      "title": "HTTP 버전별 차이 및 특징",
+      "category": "Network",
+      "importance": 1
+    },
+    {
       "id": "Network/load-balancing",
       "title": "로드밸런싱",
       "category": "Network",
@@ -148,27 +154,45 @@
     },
     {
       "source": "JavaScript/managing-memory-in-javascript",
-      "target": "JavaScript/this-binding",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Node.js/run-javascript-in-nodejs",
-      "target": "JavaScript/managing-memory-in-javascript",
+      "target": "Operating System/memory-structure",
       "strength": 1,
       "type": "USES"
     },
     {
-      "source": "Operating System/memory-structure",
-      "target": "JavaScript/managing-memory-in-javascript",
+      "source": "JavaScript/managing-memory-in-javascript",
+      "target": "Node.js/run-javascript-in-nodejs",
       "strength": 1,
-      "type": "PREREQUISITE"
+      "type": "RELATED_TO"
     },
     {
       "source": "Network/cdn",
       "target": "Network/tcp-udp",
       "strength": 1,
       "type": "USES"
+    },
+    {
+      "source": "Network/cdn",
+      "target": "Network/load-balancing",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Network/cdn",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/differences-and-features-by-http-version",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/differences-and-features-by-http-version",
+      "target": "Web/rest-api-graphql",
+      "strength": 1,
+      "type": "RELATED_TO"
     },
     {
       "source": "Network/load-balancing",
@@ -180,29 +204,143 @@
       "source": "Network/ssh",
       "target": "Network/tcp-udp",
       "strength": 1,
-      "type": "DEPENDS_ON"
+      "type": "USES"
     },
     {
-      "source": "Network/cdn",
+      "source": "Network/tcp-udp",
+      "target": "Network/cdn",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Network/differences-and-features-by-http-version",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
       "target": "Network/load-balancing",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Network/ssh",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Web/rest-api-graphql",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "React/component-return-type",
+      "strength": 1,
+      "type": "EXTENDS"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "React/react-suspense",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "Web/browser-rendering-process",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Network/cdn",
+      "source": "Node.js/run-javascript-in-nodejs",
+      "target": "JavaScript/managing-memory-in-javascript",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Operating System/memory-structure",
+      "target": "JavaScript/managing-memory-in-javascript",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "React/component-return-type",
+      "target": "React/how-react-memo-compares-props",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/component-return-type",
+      "target": "React/manipulate-dom-with-ref",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/component-return-type",
+      "target": "React/react-suspense",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/how-react-memo-compares-props",
+      "target": "React/component-return-type",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "React/how-react-memo-compares-props",
+      "target": "Web/virtual-scrolling",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/manipulate-dom-with-ref",
       "target": "Web/browser-rendering-process",
       "strength": 1,
       "type": "USES"
     },
     {
-      "source": "Web/browser-rendering-process",
-      "target": "Network/tcp-udp",
+      "source": "React/react-suspense",
+      "target": "React/component-return-type",
       "strength": 1,
-      "type": "USES"
+      "type": "DEPENDS_ON"
     },
     {
-      "source": "Web/rest-api-graphql",
-      "target": "Network/tcp-udp",
+      "source": "TypeScript/compiler-structure",
+      "target": "TypeScript/covariance-contravariance",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "TypeScript/compiler-structure",
+      "target": "TypeScript/pick-one-utility-function",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "TypeScript/compiler-structure",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "TypeScript/covariance-contravariance",
+      "target": "TypeScript/pick-one-utility-function",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "TypeScript/covariance-contravariance",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "TypeScript/pick-one-utility-function",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
       "type": "USES"
     },
@@ -213,130 +351,46 @@
       "type": "DEPENDS_ON"
     },
     {
-      "source": "Web/virtual-scrolling",
-      "target": "Web/browser-rendering-process",
-      "strength": 1,
-      "type": "IMPLEMENTS"
-    },
-    {
-      "source": "Next/react-server-component",
-      "target": "React/react-suspense",
-      "strength": 1,
-      "type": "EXTENDS"
-    },
-    {
-      "source": "Next/react-server-component",
-      "target": "Web/browser-rendering-process",
+      "source": "Web/browser-rendering-process",
+      "target": "Web/fouc",
       "strength": 1,
       "type": "PREREQUISITE"
     },
     {
-      "source": "React/manipulate-dom-with-ref",
-      "target": "Web/browser-rendering-process",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
-      "source": "React/react-suspense",
-      "target": "Web/browser-rendering-process",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
-      "source": "React/component-return-type",
-      "target": "React/how-react-memo-compares-props",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/component-return-type",
-      "target": "React/manipulate-dom-with-ref",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/component-return-type",
-      "target": "React/react-suspense",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/how-react-memo-compares-props",
-      "target": "React/manipulate-dom-with-ref",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/how-react-memo-compares-props",
-      "target": "React/react-suspense",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/covariance-contravariance",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/pick-one-utility-function",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/compiler-structure",
-      "target": "TypeScript/use-the-refer-to-infer-the-type",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/covariance-contravariance",
-      "target": "TypeScript/pick-one-utility-function",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "TypeScript/covariance-contravariance",
-      "target": "TypeScript/use-the-refer-to-infer-the-type",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "React/component-return-type",
-      "target": "TypeScript/covariance-contravariance",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "React/component-return-type",
-      "target": "TypeScript/use-the-refer-to-infer-the-type",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Web/rest-api-graphql",
+      "source": "Web/browser-rendering-process",
       "target": "Network/cdn",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
+      "source": "Web/browser-rendering-process",
+      "target": "React/manipulate-dom-with-ref",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Next/react-server-component",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Web/virtual-scrolling",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
       "source": "Web/rest-api-graphql",
-      "target": "Network/load-balancing",
+      "target": "Network/differences-and-features-by-http-version",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "USES"
     },
     {
       "source": "Web/virtual-scrolling",
-      "target": "Web/fouc",
+      "target": "Web/browser-rendering-process",
       "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Web/virtual-scrolling",
-      "target": "React/how-react-memo-compares-props",
-      "strength": 1,
-      "type": "RELATED_TO"
+      "type": "DEPENDS_ON"
     }
   ]
 }

@@ -93,6 +93,14 @@ const config: Config = {
     metadata: [
       { name: "algolia-site-verification", content: "24CD95F2D8042CB2" },
     ],
+    algolia: {
+      appId: "HTK5VKU1OR",
+      apiKey: "125662f9-44d7-45ee-9baf-885a7ba32681",
+      indexName: "/TIL",
+      contextualSearch: true,
+      searchPagePath: "search",
+      askAi: "MDePzSrUBXeh",
+    },
   } satisfies Preset.ThemeConfig,
 };
 

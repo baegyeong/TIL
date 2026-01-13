@@ -90,6 +90,10 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    metadata: [
+      name:"algolia-site-verification",
+      content:"24CD95F2D8042CB2"
+    ]
   } satisfies Preset.ThemeConfig,
 };
 

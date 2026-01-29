@@ -39,12 +39,10 @@ TIL 간의 관계를 **지식 그래프 형태로 자동 생성**
 
 - Gemini AI API 기반 분석
 - 입력:
-
   - 기존 TIL
   - 지식 그래프 구조
 
 - 출력:
-
   - 우선 학습 주제
   - 상대적으로 약한 영역
   - 기존 TIL을 연결/확장할 수 있는 주제
@@ -58,7 +56,7 @@ TIL 간의 관계를 **지식 그래프 형태로 자동 생성**
 ## 🏗 Architecture Overview
 
 ```text
-docs/til/**                 # 실제 TIL 문서
+docs/**                 # 실제 TIL 문서
         ↓
 GitHub Actions
         ↓

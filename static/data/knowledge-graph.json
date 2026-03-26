@@ -61,6 +61,12 @@
       "importance": 1
     },
     {
+      "id": "Network/http",
+      "title": "HTTP란?",
+      "category": "Network",
+      "importance": 1
+    },
+    {
       "id": "Network/load-balancing",
       "title": "로드밸런싱",
       "category": "Network",
@@ -234,19 +240,7 @@
       "source": "Data Structure/hash-table",
       "target": "Data Structure/linked-list",
       "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Data Structure/hash-table",
-      "target": "Data Structure/priority-queue",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Data Structure/linked-list",
-      "target": "Data Structure/priority-queue",
-      "strength": 1,
-      "type": "RELATED_TO"
+      "type": "USES"
     },
     {
       "source": "JavaScript/event-loop",
@@ -256,13 +250,7 @@
     },
     {
       "source": "JavaScript/event-loop",
-      "target": "JavaScript/scope-and-closure",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "JavaScript/event-loop",
-      "target": "JavaScript/this-binding",
+      "target": "Node.js/run-javascript-in-nodejs",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -273,12 +261,6 @@
       "type": "RELATED_TO"
     },
     {
-      "source": "JavaScript/scope-and-closure",
-      "target": "JavaScript/this-binding",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
       "source": "Network/cdn",
       "target": "Network/load-balancing",
       "strength": 1,
@@ -286,9 +268,9 @@
     },
     {
       "source": "Network/cdn",
-      "target": "Network/throughput-and-latency",
+      "target": "Network/http",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "USES"
     },
     {
       "source": "Network/cdn",
@@ -298,19 +280,43 @@
     },
     {
       "source": "Network/differences-and-features-by-http-version",
-      "target": "Network/tcp-udp",
+      "target": "Network/http",
       "strength": 1,
-      "type": "DEPENDS_ON"
+      "type": "EXTENDS"
     },
     {
       "source": "Network/differences-and-features-by-http-version",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/http",
+      "target": "Network/differences-and-features-by-http-version",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/http",
       "target": "Network/tls-handshake",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Network/differences-and-features-by-http-version",
+      "source": "Network/http",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/http",
       "target": "Web/rest-api-graphql",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/http",
+      "target": "Web/caching-strategy",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -328,31 +334,79 @@
     },
     {
       "source": "Network/tcp-udp",
+      "target": "Network/http",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Network/ssh",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tcp-udp",
       "target": "Network/tls-handshake",
       "strength": 1,
       "type": "PREREQUISITE"
     },
     {
-      "source": "Network/tls-handshake",
-      "target": "Network/tcp-udp",
+      "source": "Network/tcp-udp",
+      "target": "Network/differences-and-features-by-http-version",
       "strength": 1,
-      "type": "DEPENDS_ON"
+      "type": "PREREQUISITE"
     },
     {
-      "source": "Next/nextjs-hydration-and-rsc-interaction",
-      "target": "Next/react-server-component",
+      "source": "Network/throughput-and-latency",
+      "target": "Network/cdn",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Network/throughput-and-latency",
+      "target": "Network/load-balancing",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Network/throughput-and-latency",
+      "target": "Network/differences-and-features-by-http-version",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Network/tls-handshake",
+      "target": "Network/http",
+      "strength": 1,
+      "type": "EXTENDS"
+    },
+    {
+      "source": "Network/tls-handshake",
+      "target": "Network/tcp-udp",
       "strength": 1,
       "type": "USES"
     },
     {
       "source": "Next/nextjs-hydration-and-rsc-interaction",
-      "target": "Web/browser-rendering-process",
+      "target": "Next/react-server-component",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Next/nextjs-hydration-and-rsc-interaction",
+      "target": "React/react-suspense",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
       "source": "Next/react-server-component",
-      "target": "React/react-fiber-architecture",
+      "target": "Next/nextjs-hydration-and-rsc-interaction",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "React/react-suspense",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -363,28 +417,52 @@
       "type": "USES"
     },
     {
-      "source": "Node.js/yarn-pnpm",
-      "target": "Node.js/run-javascript-in-nodejs",
+      "source": "Node.js/run-javascript-in-nodejs",
+      "target": "Node.js/yarn-pnpm",
       "strength": 1,
-      "type": "DEPENDS_ON"
+      "type": "RELATED_TO"
     },
     {
-      "source": "React/controlled-component-uncontrolled-component",
-      "target": "React/how-react-memo-compares-props",
+      "source": "Node.js/yarn-pnpm",
+      "target": "Web/frontend-build-tool",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Operating System/memory-structure",
+      "target": "JavaScript/managing-memory-in-javascript",
       "strength": 1,
       "type": "PREREQUISITE"
     },
     {
-      "source": "React/how-react-memo-compares-props",
+      "source": "React/component-return-type",
       "target": "React/react-fiber-architecture",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "React/manipulate-dom-with-ref",
-      "target": "Web/browser-rendering-process",
+      "source": "React/controlled-component-uncontrolled-component",
+      "target": "React/manipulate-dom-with-ref",
       "strength": 1,
-      "type": "USES"
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/how-react-memo-compares-props",
+      "target": "React/react-fiber-architecture",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "React/manipulate-dom-with-ref",
+      "target": "Web/virtual-scrolling",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "React/react-fiber-architecture",
+      "target": "React/how-react-memo-compares-props",
+      "strength": 1,
+      "type": "PREREQUISITE"
     },
     {
       "source": "React/react-fiber-architecture",
@@ -393,10 +471,28 @@
       "type": "PREREQUISITE"
     },
     {
+      "source": "React/react-suspense",
+      "target": "React/react-fiber-architecture",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
       "source": "TypeScript/conditional-types",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
       "type": "PREREQUISITE"
+    },
+    {
+      "source": "TypeScript/conditional-types",
+      "target": "TypeScript/pick-one-utility-function",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "TypeScript/covariance-contravariance",
+      "target": "TypeScript/conditional-types",
+      "strength": 1,
+      "type": "RELATED_TO"
     },
     {
       "source": "TypeScript/pick-one-utility-function",
@@ -405,22 +501,28 @@
       "type": "USES"
     },
     {
+      "source": "TypeScript/pick-one-utility-function",
+      "target": "TypeScript/use-the-refer-to-infer-the-type",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
       "source": "TypeScript/use-the-refer-to-infer-the-type",
       "target": "TypeScript/conditional-types",
       "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "TypeScript/unknown-any",
-      "target": "TypeScript/conditional-types",
-      "strength": 1,
-      "type": "PREREQUISITE"
+      "type": "DEPENDS_ON"
     },
     {
       "source": "Web/fouc",
       "target": "Web/browser-rendering-process",
       "strength": 1,
-      "type": "DEPENDS_ON"
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Web/fouc",
+      "strength": 1,
+      "type": "PREREQUISITE"
     },
     {
       "source": "Web/browser-rendering-process",
@@ -432,23 +534,29 @@
       "source": "Web/browser-rendering-process",
       "target": "Web/virtual-scrolling",
       "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Web/caching-strategy",
-      "target": "Network/cdn",
-      "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/frontend-build-tool",
+      "source": "Web/caching-strategy",
       "target": "Web/browser-rendering-process",
       "strength": 1,
       "type": "RELATED_TO"
     },
     {
-      "source": "Web/rest-api-graphql",
-      "target": "Network/differences-and-features-by-http-version",
+      "source": "Web/caching-strategy",
+      "target": "Network/http",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Web/frontend-build-tool",
+      "target": "Node.js/yarn-pnpm",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/virtual-scrolling",
+      "target": "Web/browser-rendering-process",
       "strength": 1,
       "type": "RELATED_TO"
     }

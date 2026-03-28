@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - "docs/**"
-      - "scripts/generate-graph.js"
+      - "scripts/generate-graph.ts"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -31,7 +31,7 @@ jobs:
       - name: Generate knowledge graph
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node scripts/generate-graph.js
+        run: npx tsx scripts/generate-graph.ts
 
       - name: Check for changes
         id: git-check

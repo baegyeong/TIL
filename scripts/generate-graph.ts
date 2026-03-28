@@ -10,10 +10,36 @@ const __dirname = path.dirname(__filename);
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+interface TIL {
+  id: string;
+  category: string;
+  title: string;
+  summary: string;
+}
+
+interface GraphNode {
+  id: string;
+  title: string;
+  category: string;
+  importance: number;
+}
+
+interface GraphLink {
+  source: string;
+  target: string;
+  strength: number;
+  type: string;
+}
+
+interface Graph {
+  nodes: GraphNode[];
+  links: GraphLink[];
+}
+
 /* =========================
  * 1. TIL 파일 읽기
  ========================= */
-async function getAllTILs() {
+async function getAllTILs(): Promise<TIL[]> {
   const docsPath = path.join(__dirname, "..", "docs");
   const categories = await fs.readdir(docsPath);
 
@@ -47,19 +73,15 @@ async function getAllTILs() {
               .slice(0, 300)
               .trim();
 
-            return {
-              id: `${category}/${slug}`,
-              category,
-              title,
-              summary,
-            };
+            return { id: `${category}/${slug}`, category, title, summary };
           } catch (error) {
             console.error(`Error processing file ${category}/${file}:`, error);
             return null;
           }
         });
 
-      return Promise.all(filePromises);
+      const results = await Promise.all(filePromises);
+      return results.filter((r): r is TIL => r !== null);
     } catch (error) {
       console.error(`Error processing category ${category}:`, error);
       return [];
@@ -67,13 +89,13 @@ async function getAllTILs() {
   });
 
   const nestedTils = await Promise.all(tilPromises);
-  return nestedTils.flat().filter(Boolean);
+  return nestedTils.flat();
 }
 
 /* =========================
  * 2. Gemini 관계 분석
  ========================= */
-async function analyzeRelationships(tils) {
+async function analyzeRelationships(tils: TIL[]): Promise<Graph> {
   const tilSummaries = tils
     .map(
       (til) => `
@@ -129,9 +151,9 @@ JSON 형식으로만 응답하세요:
   ]
 }
 `;
+
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
-
     contents: [{ role: "user", parts: [{ text: prompt }] }],
     config: { responseMimeType: "application/json" },
   });
@@ -142,26 +164,20 @@ JSON 형식으로만 응답하세요:
 
   if (!rawText) throw new Error("Gemini 응답이 비어 있음");
 
-  return JSON.parse(rawText);
+  return JSON.parse(rawText) as Graph;
 }
 
-function filterInvalidNodes(graph, validIds) {
-  return graph.nodes.filter((node) => validIds.has(node.id));
-}
-
-function sanitizeGraph(graph, validIds) {
-  const nodes = filterInvalidNodes(graph, validIds);
+function sanitizeGraph(graph: Graph, validIds: Set<string>): Graph {
+  const nodes = graph.nodes.filter((node) => validIds.has(node.id));
   const nodeIdSet = new Set(nodes.map((n) => n.id));
-
   const links = graph.links.filter(
     (l) => nodeIdSet.has(l.source) && nodeIdSet.has(l.target)
   );
-
   return { nodes, links };
 }
 
 /* =========================
- * 3. 저장 
+ * 3. 저장
  ========================= */
 async function main() {
   try {

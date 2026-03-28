@@ -27,7 +27,7 @@ jobs:
       - name: Generate recommendations
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: node scripts/generate-recommendations.js
+        run: npx tsx scripts/generate-recommendations.ts
 
       - name: Commit and Push Recommendations
         run: |

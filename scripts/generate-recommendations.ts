@@ -3,11 +3,9 @@ import path from "path";
 import { GoogleGenAI } from "@google/genai";
 import "dotenv/config";
 
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-function today() {
+function today(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
@@ -17,23 +15,53 @@ const GRAPH_PATH = path.join(
   "data",
   "knowledge-graph.json"
 );
-
 const OUTPUT_DIR = path.join(process.cwd(), "meta", "recommendations");
-
 const OUTPUT_PATH = path.join(OUTPUT_DIR, `${today()}.md`);
+
+interface GraphNode {
+  id: string;
+  title: string;
+  category: string;
+  importance?: number;
+}
+
+interface GraphLink {
+  source: string;
+  target: string;
+  type: string;
+  strength: number;
+}
+
+interface Graph {
+  nodes: GraphNode[];
+  links: GraphLink[];
+}
+
+interface ConnectionSuggestion {
+  topic: string;
+  connects: string[];
+}
+
+interface RecommendationResult {
+  highPriority: string[];
+  weakAreas: string[];
+  connections: ConnectionSuggestion[];
+}
 
 /* =========================
  * 1. 그래프 로드
  ========================= */
-async function loadGraph() {
+async function loadGraph(): Promise<Graph> {
   const raw = await fs.readFile(GRAPH_PATH, "utf8");
-  return JSON.parse(raw);
+  return JSON.parse(raw) as Graph;
 }
 
 /* =========================
  * 2. Gemini 추천 생성
  ========================= */
-async function generateRecommendations(graph) {
+async function generateRecommendations(
+  graph: Graph
+): Promise<RecommendationResult> {
   const nodeSummaries = graph.nodes
     .map(
       (n) => `
@@ -95,13 +123,15 @@ JSON 형식으로만 응답하세요.
     ?.map((p) => p.text)
     .join("");
 
-  return JSON.parse(text);
+  if (!text) throw new Error("Gemini 응답이 비어 있음");
+
+  return JSON.parse(text) as RecommendationResult;
 }
 
 /* =========================
  * 3. Markdown 변환
  ========================= */
-function toMarkdown(result) {
+function toMarkdown(result: RecommendationResult): string {
   return `# 📌 TIL Recommendations (${today()})
 
 ## 🔥 High Priority
@@ -114,8 +144,7 @@ ${result.weakAreas.map((t) => `- ${t}`).join("\n")}
 ${result.connections
   .map(
     (c) =>
-      `- **${c.topic}**  
-  ↳ connects: ${c.connects.join(", ")}`
+      `- **${c.topic}**  \n  ↳ connects: ${c.connects.join(", ")}`
   )
   .join("\n")}
 `;

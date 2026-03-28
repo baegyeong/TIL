@@ -1,0 +1,29 @@
+{
+  "name": "mcp-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && chmod +x build/index.js",
+    "watch": "tsc --watch",
+    "dev": "tsx src/index.ts"
+  },
+  "bin": {
+    "til-mcp-server": "./build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.0"
+  }
+}

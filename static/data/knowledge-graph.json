@@ -1,6 +1,12 @@
 {
   "nodes": [
     {
+      "id": "Algorithm/heap",
+      "title": "Heap(힙)",
+      "category": "Algorithm",
+      "importance": 1
+    },
+    {
       "id": "Algorithm/lower-bound-upper-bound",
       "title": "lower bound와 upper bound",
       "category": "Algorithm",
@@ -27,6 +33,12 @@
     {
       "id": "JavaScript/event-loop",
       "title": "이벤트 루프",
+      "category": "JavaScript",
+      "importance": 1
+    },
+    {
+      "id": "JavaScript/how-this-works-in-javascript",
+      "title": "JavaScript this는 호출방식으로 결정된다.",
       "category": "JavaScript",
       "importance": 1
     },
@@ -237,22 +249,22 @@
   ],
   "links": [
     {
-      "source": "Data Structure/hash-table",
-      "target": "Data Structure/linked-list",
+      "source": "Data Structure/priority-queue",
+      "target": "Algorithm/heap",
       "strength": 1,
       "type": "USES"
     },
     {
-      "source": "JavaScript/event-loop",
-      "target": "JavaScript/managing-memory-in-javascript",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "JavaScript/scope-and-closure",
+      "source": "JavaScript/how-this-works-in-javascript",
       "target": "JavaScript/this-binding",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "SIMILAR_TO"
+    },
+    {
+      "source": "JavaScript/this-binding",
+      "target": "JavaScript/how-this-works-in-javascript",
+      "strength": 1,
+      "type": "SIMILAR_TO"
     },
     {
       "source": "Network/cdn",
@@ -264,13 +276,19 @@
       "source": "Network/cdn",
       "target": "Network/load-balancing",
       "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/cdn",
+      "target": "Network/throughput-and-latency",
+      "strength": 1,
       "type": "RELATED_TO"
     },
     {
       "source": "Network/cdn",
-      "target": "Web/caching-strategy",
+      "target": "Web/browser-rendering-process",
       "strength": 1,
-      "type": "USES"
+      "type": "RELATED_TO"
     },
     {
       "source": "Network/differences-and-features-by-http-version",
@@ -279,64 +297,40 @@
       "type": "EXTENDS"
     },
     {
-      "source": "Network/differences-and-features-by-http-version",
-      "target": "Network/tcp-udp",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
       "source": "Network/http",
       "target": "Network/differences-and-features-by-http-version",
       "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
-      "source": "Network/http",
-      "target": "Web/rest-api-graphql",
-      "strength": 1,
-      "type": "PREREQUISITE"
-    },
-    {
-      "source": "Network/http",
-      "target": "Network/tcp-udp",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Network/load-balancing",
-      "target": "Network/http",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Network/ssh",
-      "target": "Network/tcp-udp",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Network/ssh",
-      "target": "Network/tls-handshake",
-      "strength": 1,
-      "type": "SIMILAR_TO"
-    },
-    {
-      "source": "Network/tls-handshake",
-      "target": "Network/tcp-udp",
-      "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "Network/tls-handshake",
-      "target": "Network/http",
-      "strength": 1,
       "type": "RELATED_TO"
+    },
+    {
+      "source": "Network/http",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Network/tcp-udp",
+      "target": "Network/http",
+      "strength": 1,
+      "type": "PREREQUISITE"
+    },
+    {
+      "source": "Network/tls-handshake",
+      "target": "Network/http",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Network/tls-handshake",
+      "target": "Network/tcp-udp",
+      "strength": 1,
+      "type": "DEPENDS_ON"
     },
     {
       "source": "Next/nextjs-hydration-and-rsc-interaction",
       "target": "Next/react-server-component",
       "strength": 1,
-      "type": "DEPENDS_ON"
+      "type": "RELATED_TO"
     },
     {
       "source": "Next/nextjs-hydration-and-rsc-interaction",
@@ -346,9 +340,15 @@
     },
     {
       "source": "Next/react-server-component",
-      "target": "React/react-fiber-architecture",
+      "target": "Next/nextjs-hydration-and-rsc-interaction",
       "strength": 1,
-      "type": "EXTENDS"
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Next/react-server-component",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "RELATED_TO"
     },
     {
       "source": "Node.js/run-javascript-in-nodejs",
@@ -363,38 +363,68 @@
       "type": "PREREQUISITE"
     },
     {
-      "source": "React/controlled-component-uncontrolled-component",
-      "target": "React/manipulate-dom-with-ref",
+      "source": "React/react-fiber-architecture",
+      "target": "JavaScript/event-loop",
       "strength": 1,
-      "type": "USES"
-    },
-    {
-      "source": "React/how-react-memo-compares-props",
-      "target": "React/react-fiber-architecture",
-      "strength": 1,
-      "type": "RELATED_TO"
+      "type": "DEPENDS_ON"
     },
     {
       "source": "React/react-suspense",
       "target": "React/react-fiber-architecture",
       "strength": 1,
-      "type": "USES"
+      "type": "DEPENDS_ON"
     },
     {
       "source": "TypeScript/conditional-types",
       "target": "TypeScript/use-the-refer-to-infer-the-type",
       "strength": 1,
-      "type": "PREREQUISITE"
+      "type": "RELATED_TO"
     },
     {
       "source": "TypeScript/use-the-refer-to-infer-the-type",
-      "target": "TypeScript/pick-one-utility-function",
+      "target": "TypeScript/conditional-types",
       "strength": 1,
-      "type": "RELATED_TO"
+      "type": "DEPENDS_ON"
     },
     {
       "source": "Web/fouc",
       "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Web/fouc",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Network/cdn",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Network/throughput-and-latency",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/browser-rendering-process",
+      "target": "Web/caching-strategy",
+      "strength": 1,
+      "type": "USES"
+    },
+    {
+      "source": "Web/caching-strategy",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "DEPENDS_ON"
+    },
+    {
+      "source": "Web/caching-strategy",
+      "target": "Network/cdn",
       "strength": 1,
       "type": "RELATED_TO"
     },
@@ -402,13 +432,25 @@
       "source": "Web/caching-strategy",
       "target": "Network/http",
       "strength": 1,
-      "type": "USES"
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/frontend-build-tool",
+      "target": "Web/browser-rendering-process",
+      "strength": 1,
+      "type": "RELATED_TO"
+    },
+    {
+      "source": "Web/frontend-build-tool",
+      "target": "Network/http",
+      "strength": 1,
+      "type": "RELATED_TO"
     },
     {
       "source": "Web/rest-api-graphql",
       "target": "Network/http",
       "strength": 1,
-      "type": "EXTENDS"
+      "type": "USES"
     },
     {
       "source": "Web/virtual-scrolling",
@@ -418,13 +460,7 @@
     },
     {
       "source": "Web/virtual-scrolling",
-      "target": "React/react-fiber-architecture",
-      "strength": 1,
-      "type": "RELATED_TO"
-    },
-    {
-      "source": "Web/frontend-build-tool",
-      "target": "Next/react-server-component",
+      "target": "React/manipulate-dom-with-ref",
       "strength": 1,
       "type": "RELATED_TO"
     }

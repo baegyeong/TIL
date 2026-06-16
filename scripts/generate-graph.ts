@@ -70,7 +70,7 @@ async function getAllTILs(): Promise<TIL[]> {
 
             const summary = content
               .replace(/---[\s\S]*?---/, "")
-              .slice(0, 300)
+              .slice(0, 1500)
               .trim();
 
             return { id: `${category}/${slug}`, category, title, summary };
@@ -124,6 +124,8 @@ ${idList}
 - 반드시 제공된 ID 목록에 포함된 ID만 사용하세요
 - 새로운 ID를 생성하지 마세요
 - 존재하지 않는 문서는 절대 추가하지 마세요
+- 모든 노드가 최소 1개 이상의 링크를 가져야 합니다 (고립 노드 없음)
+- 문서 수 대비 충분한 링크를 생성하세요 (최소 문서 수의 2배 이상)
 
 관계(type)는 반드시 아래 값 중 하나만 사용하세요:
 

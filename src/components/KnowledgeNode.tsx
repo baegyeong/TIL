@@ -22,8 +22,8 @@ export const KnowledgeNode = ({ data }: { data: Node }) => {
       <strong style={{ fontSize: 12 }}>{wrapTitle(data.title)}</strong>
       <div style={{ fontSize: 10, color: "#616161ff" }}>{data.category}</div>
 
-      <Handle type="target" position={Position.Top} />
-      <Handle type="source" position={Position.Bottom} />
+      <Handle type="target" position={Position.Left} />
+      <Handle type="source" position={Position.Right} />
     </div>
   );
 };

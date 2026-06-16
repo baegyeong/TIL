@@ -130,12 +130,13 @@ ${idList}
 관계(type)는 반드시 아래 값 중 하나만 사용하세요:
 
 - DEPENDS_ON (의존함)
-- RELATED_TO (관련 있음)
 - EXTENDS (확장함)
 - IMPLEMENTS (구현함)
 - USES (사용함)
 - PREREQUISITE (선행 지식)
 - SIMILAR_TO (유사함)
+
+⚠️ RELATED_TO는 사용하지 마세요. 위 타입 중 가장 적합한 것을 선택하세요.
 
 JSON 형식으로만 응답하세요:
 

@@ -35,14 +35,16 @@ const KnowledgeGraph = () => {
       data: n,
     }));
 
-    const edges: Edge[] = graphData.links.map((l, i) => ({
-      id: `e-${i}`,
-      source: l.source,
-      target: l.target,
-      type: "smoothstep",
-      label: RELATION_LABELS[l.type] ?? l.type,
-      animated: l.strength >= 4,
-    }));
+    const edges: Edge[] = graphData.links
+      .filter((l) => l.type !== "RELATED_TO")
+      .map((l, i) => ({
+        id: `e-${i}`,
+        source: l.source,
+        target: l.target,
+        type: "smoothstep",
+        label: RELATION_LABELS[l.type] ?? l.type,
+        animated: l.strength >= 4,
+      }));
 
     const layoutedNodes = applyDagreLayout(nodes, edges, "LR");
 

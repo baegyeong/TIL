@@ -11,8 +11,8 @@ export function applyDagreLayout(
 
   dagreGraph.setGraph({
     rankdir: direction,
-    nodesep: 80,
-    ranksep: 120,
+    nodesep: 60,
+    ranksep: 220,
   });
 
   nodes.forEach((node) => {

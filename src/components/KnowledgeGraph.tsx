@@ -18,6 +18,7 @@ import graphData from "@site/static/data/knowledge-graph.json";
 
 import { KnowledgeNode } from "./KnowledgeNode";
 import { applyDagreLayout } from "../utils/layout";
+import { RELATION_LABELS } from "../constants/relation-labels";
 
 const nodeTypes = {
   knowledge: KnowledgeNode,
@@ -39,6 +40,7 @@ const KnowledgeGraph = () => {
       source: l.source,
       target: l.target,
       type: "smoothstep",
+      label: RELATION_LABELS[l.type] ?? l.type,
       animated: l.strength >= 4,
     }));
 
